@@ -97,7 +97,6 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#0a0a1a;color:#fff;direc
 .hrep .hval{color:#06b6d4;}
 .hsongs .hval{color:#a855f7;}
 .hweek{margin-right:auto;font-size:13px;font-weight:700;color:#a0a0c0;background:rgba(255,255,255,.06);padding:5px 12px;border-radius:18px;}
-.hskill{font-size:11px;color:#718096;}
 
 /* Tooltip */
 #tooltip{position:fixed;background:rgba(10,10,26,.96);border:1px solid rgba(168,85,247,.5);border-radius:14px;padding:14px 18px;min-width:210px;max-width:280px;z-index:200;pointer-events:none;display:none;backdrop-filter:blur(10px);}
@@ -108,7 +107,7 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#0a0a1a;color:#fff;direc
 .ttbtn:hover{opacity:.85;}
 
 /* Toast */
-#toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%);background:rgba(10,10,26,.96);border:1px solid rgba(168,85,247,.4);border-radius:12px;padding:12px 22px;font-size:14px;font-weight:600;z-index:300;pointer-events:none;opacity:0;transition:opacity .3s;backdrop-filter:blur(10px);text-align:center;max-width:480px;white-space:nowrap;}
+#toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%);background:rgba(10,10,26,.96);border:1px solid rgba(168,85,247,.4);border-radius:12px;padding:12px 22px;font-size:14px;font-weight:600;z-index:300;pointer-events:none;opacity:0;transition:opacity .3s;backdrop-filter:blur(10px);text-align:center;max-width:520px;}
 #toast.show{opacity:1;}
 
 /* Shop */
@@ -120,12 +119,14 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#0a0a1a;color:#fff;direc
 .shop-close{background:none;border:none;color:#a0a0c0;font-size:22px;cursor:pointer;line-height:1;}
 .shop-items{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px;}
 .sitem{padding:14px;border-radius:12px;border:2px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);transition:all .2s;}
-.sitem.bought{border-color:#22c55e;opacity:.6;}
+.sitem.bought{border-color:#22c55e;opacity:.65;}
+.sitem.broken{border-color:#f97316!important;background:rgba(249,115,22,.06)!important;opacity:1!important;}
 .siname{font-size:14px;font-weight:700;margin-bottom:3px;}
 .sieff{font-size:11px;color:#a0a0c0;margin-bottom:8px;}
 .siprice{font-size:13px;font-weight:700;color:#fbbf24;}
 .sibuy{margin-top:8px;width:100%;padding:7px;border-radius:8px;background:linear-gradient(135deg,#a855f7,#ec4899);color:#fff;font-size:12px;font-weight:700;border:none;cursor:pointer;}
 .sibuy:disabled{opacity:.35;cursor:not-allowed;background:rgba(255,255,255,.1);}
+.sibuy.repair{background:linear-gradient(135deg,#f97316,#ef4444);}
 
 /* Event */
 #ev-overlay{position:fixed;inset:0;background:rgba(0,0,0,.82);z-index:500;display:none;align-items:center;justify-content:center;}
@@ -158,6 +159,56 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#0a0a1a;color:#fff;direc
 #career-badge{position:fixed;top:70px;left:18px;background:rgba(10,10,26,.88);backdrop-filter:blur(10px);border:1px solid rgba(168,85,247,.3);border-radius:12px;padding:10px 16px;z-index:100;font-size:12px;}
 .cb-stage{font-weight:700;color:#a855f7;}
 .cb-next{color:#718096;font-size:11px;margin-top:2px;}
+
+/* ── VENUE PICKER ─────────────────────────────────────────────────────── */
+#venue-overlay{position:fixed;inset:0;background:rgba(0,0,0,.82);z-index:700;display:none;align-items:center;justify-content:center;}
+#venue-overlay.open{display:flex;}
+.venue-box{background:#0f0f24;border:1px solid rgba(236,72,153,.4);border-radius:22px;padding:30px;width:92%;max-width:560px;max-height:85vh;overflow-y:auto;}
+.venue-title{font-size:24px;font-weight:800;margin-bottom:6px;}
+.venue-sub{font-size:13px;color:#a0a0c0;margin-bottom:20px;}
+.venue-grid{display:flex;flex-direction:column;gap:10px;}
+.vcard{padding:16px 18px;border-radius:14px;border:2px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);cursor:pointer;display:flex;align-items:center;gap:16px;transition:all .2s;}
+.vcard:hover:not(.vlocked){border-color:#ec4899;background:rgba(236,72,153,.1);}
+.vcard.vlocked{opacity:.4;cursor:not-allowed;}
+.vemo{font-size:36px;flex-shrink:0;}
+.vinfo{flex:1;}
+.vname{font-size:17px;font-weight:800;}
+.vdesc{font-size:12px;color:#a0a0c0;margin-top:2px;}
+.vtags{display:flex;gap:8px;margin-top:6px;flex-wrap:wrap;}
+.vtag{font-size:11px;font-weight:700;padding:2px 8px;border-radius:8px;}
+.vtag-cost{background:rgba(251,191,36,.15);color:#fbbf24;}
+.vtag-req{background:rgba(6,182,212,.15);color:#06b6d4;}
+.vtag-lock{background:rgba(239,68,68,.15);color:#ef4444;}
+.vtag-mult{background:rgba(168,85,247,.15);color:#a855f7;}
+.venue-cancel{margin-top:16px;width:100%;padding:12px;border-radius:10px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:#a0a0c0;font-size:14px;font-weight:700;cursor:pointer;}
+
+/* ── PERFORMANCE MINI-GAME ─────────────────────────────────────────────── */
+#perf-overlay{position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:800;display:none;flex-direction:column;align-items:center;justify-content:center;}
+#perf-overlay.open{display:flex;}
+.perf-venue-name{font-size:18px;color:#a0a0c0;margin-bottom:8px;}
+.perf-title{font-size:28px;font-weight:900;margin-bottom:24px;background:linear-gradient(135deg,#ec4899,#a855f7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.perf-timer-bar{width:320px;height:8px;background:rgba(255,255,255,.1);border-radius:4px;margin-bottom:28px;overflow:hidden;}
+.perf-timer-fill{height:100%;background:linear-gradient(90deg,#a855f7,#ec4899);border-radius:4px;transition:width .1s linear;}
+.perf-key-area{position:relative;width:180px;height:180px;margin-bottom:28px;display:flex;align-items:center;justify-content:center;}
+.perf-ring{position:absolute;inset:0;border-radius:50%;border:4px solid rgba(168,85,247,.4);}
+.perf-ring-fill{position:absolute;inset:0;border-radius:50%;}
+@keyframes ringShrink{from{opacity:1;transform:scale(1);}to{opacity:0;transform:scale(0.5);}}
+.perf-key-box{width:140px;height:140px;border-radius:24px;background:rgba(168,85,247,.15);border:3px solid #a855f7;display:flex;align-items:center;justify-content:center;font-size:80px;font-weight:900;transition:all .15s;position:relative;z-index:1;}
+.perf-key-box.hit{background:rgba(34,197,94,.3);border-color:#22c55e;transform:scale(1.08);}
+.perf-key-box.miss{background:rgba(239,68,68,.3);border-color:#ef4444;}
+.perf-countdown{position:absolute;bottom:-8px;left:50%;transform:translateX(-50%);width:100%;height:5px;background:rgba(255,255,255,.15);border-radius:3px;overflow:hidden;}
+.perf-countdown-fill{height:100%;background:#ec4899;border-radius:3px;transform-origin:right;}
+.perf-score-row{display:flex;align-items:center;gap:20px;margin-bottom:8px;}
+.perf-hits{font-size:20px;font-weight:800;color:#fbbf24;}
+.perf-rating-stars{font-size:26px;letter-spacing:2px;}
+.perf-hint{font-size:13px;color:#718096;margin-top:4px;}
+/* Result screen */
+.perf-result{display:none;flex-direction:column;align-items:center;text-align:center;}
+.perf-result.show{display:flex;}
+.perf-result-emo{font-size:72px;margin-bottom:16px;}
+.perf-result-title{font-size:26px;font-weight:900;margin-bottom:8px;}
+.perf-result-sub{font-size:15px;color:#a0a0c0;margin-bottom:24px;line-height:1.6;}
+.perf-result-btn{padding:14px 36px;border-radius:12px;background:linear-gradient(135deg,#a855f7,#ec4899);color:#fff;font-size:16px;font-weight:700;border:none;cursor:pointer;}
 
 ::-webkit-scrollbar{width:5px;}
 ::-webkit-scrollbar-track{background:rgba(255,255,255,.02);}
@@ -228,6 +279,7 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#0a0a1a;color:#fff;direc
 <div id="shop-overlay">
   <div class="shop-box">
     <div class="shop-hdr">🛒 חנות ציוד<div style="display:flex;align-items:center;gap:12px;"><span class="shop-bal" id="sh-bal"></span><button class="shop-close" onclick="closeShop()">✕</button></div></div>
+    <div style="font-size:12px;color:#718096;margin-bottom:4px;">⚠️ ציוד עלול להישבר בהופעות ויצריך תיקון</div>
     <div class="shop-items" id="sh-items"></div>
   </div>
 </div>
@@ -252,6 +304,42 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#0a0a1a;color:#fff;direc
     <div class="ms-title" id="ms-title"></div>
     <div class="ms-sub" id="ms-sub"></div>
     <button class="ms-btn" onclick="closeMilestone()">🎸 המשך!</button>
+  </div>
+</div>
+
+<!-- Venue Picker -->
+<div id="venue-overlay">
+  <div class="venue-box">
+    <div class="venue-title">🎤 בחר מקום הופעה</div>
+    <div class="venue-sub">כל מקום מציע קהל שונה, תגמול שונה ודרישות שונות</div>
+    <div class="venue-grid" id="venue-grid"></div>
+    <button class="venue-cancel" onclick="closeVenue()">ביטול</button>
+  </div>
+</div>
+
+<!-- Performance Mini-Game -->
+<div id="perf-overlay">
+  <!-- Active game -->
+  <div id="perf-game">
+    <div class="perf-venue-name" id="perf-venue-label"></div>
+    <div class="perf-title">לחץ על המקשים בזמן!</div>
+    <div class="perf-timer-bar"><div class="perf-timer-fill" id="perf-timer-fill" style="width:100%"></div></div>
+    <div class="perf-key-area">
+      <div class="perf-key-box" id="perf-key-box">?</div>
+      <div class="perf-countdown"><div class="perf-countdown-fill" id="perf-cd-fill" style="width:100%"></div></div>
+    </div>
+    <div class="perf-score-row">
+      <span class="perf-hits" id="perf-hits">0/0</span>
+      <span class="perf-rating-stars" id="perf-stars">☆☆☆☆☆</span>
+    </div>
+    <div class="perf-hint">לחץ על המקש המוצג לפני שייעלם</div>
+  </div>
+  <!-- Result -->
+  <div class="perf-result" id="perf-result">
+    <div class="perf-result-emo" id="pr-emo"></div>
+    <div class="perf-result-title" id="pr-title"></div>
+    <div class="perf-result-sub" id="pr-sub"></div>
+    <button class="perf-result-btn" onclick="closePerfOverlay()">המשך 🎸</button>
   </div>
 </div>
 
@@ -285,14 +373,21 @@ const MUSICIANS=[
   {id:8,name:'אורן',role:'בס',talent:5,ego:3,cost:80,color:'#2ecc71'},
 ];
 const SHOP_ITEMS=[
-  {id:'mic',name:'מיקרופון מקצועי',eff:'+15% הקלטות',price:80,emoji:'🎙️'},
-  {id:'guitar',name:'גיטרה חשמלית',eff:'+20% הופעות',price:120,emoji:'🎸'},
-  {id:'lights',name:'שלט תאורה',eff:'+25% הופעות',price:150,emoji:'💡'},
-  {id:'amp',name:'ציוד הגברה',eff:'+30% הכנסות הופעה',price:200,emoji:'🔊'},
-  {id:'mixer',name:'מיקסר',eff:'+20% הקלטות',price:90,emoji:'🎛️'},
-  {id:'camera',name:'מצלמה לסרטונים',eff:'+30% רשתות',price:60,emoji:'📹'},
-  {id:'radio',name:'פרסומת ברדיו',eff:'+200 מעריצים מיידי',price:100,emoji:'📻'},
-  {id:'manager',name:'מנהל עסקים',eff:'+15% כל ההכנסות',price:180,emoji:'💼'},
+  {id:'mic',name:'מיקרופון מקצועי',eff:'+15% הקלטות',price:80,emoji:'🎙️',breakable:true},
+  {id:'guitar',name:'גיטרה חשמלית',eff:'+20% הופעות',price:120,emoji:'🎸',breakable:true},
+  {id:'lights',name:'שלט תאורה',eff:'+25% הופעות',price:150,emoji:'💡',breakable:true},
+  {id:'amp',name:'ציוד הגברה',eff:'+30% הכנסות הופעה',price:200,emoji:'🔊',breakable:true},
+  {id:'mixer',name:'מיקסר',eff:'+20% הקלטות',price:90,emoji:'🎛️',breakable:true},
+  {id:'camera',name:'מצלמה לסרטונים',eff:'+30% רשתות',price:60,emoji:'📹',breakable:false},
+  {id:'radio',name:'פרסומת ברדיו',eff:'+200 מעריצים מיידי',price:100,emoji:'📻',breakable:false},
+  {id:'manager',name:'מנהל עסקים',eff:'+15% כל ההכנסות',price:180,emoji:'💼',breakable:false},
+];
+const VENUES=[
+  {id:'bar',name:'בר קטן',emoji:'🍺',cost:0,repReq:0,mult:0.5,desc:'20–80 קהל · אווירה כיפית'},
+  {id:'club',name:'מועדון',emoji:'🎵',cost:20,repReq:0,mult:1.0,desc:'100–300 קהל · ויב מגניב'},
+  {id:'hall',name:'אולם קונצרטים',emoji:'🎭',cost:60,repReq:20,mult:2.0,desc:'500–1,000 קהל · סצנה אמיתית'},
+  {id:'theater',name:'תיאטרון',emoji:'🏛️',cost:100,repReq:40,mult:3.5,desc:'1,000–3,000 קהל · יוקרתי'},
+  {id:'stadium',name:'אצטדיון',emoji:'🏟️',cost:200,repReq:80,mult:7.0,desc:'10,000+ קהל · ספקטקל ענק'},
 ];
 const CAREER_STAGES=[
   {fans:0,name:'להקה אנונימית',emoji:'🎸'},
@@ -306,28 +401,28 @@ const LOCS=[
   {id:'practice',name:'חדר חזרות',desc:'שפר כישורים ומצב רוח',cost:'חינם',reward:'+כישור +מצב רוח',color:0x22c55e,pos:[-8,0,-4]},
   {id:'write',name:'חדר כתיבה',desc:'כתוב שיר חדש ללהקה',cost:'חינם',reward:'+שיר +מעריצים',color:0xa855f7,pos:[8,0,-4]},
   {id:'record',name:'אולפן הקלטות',desc:'הקלט שיר ממלאי (₪30)',cost:'₪30',reward:'+כסף +מוניטין',color:0x06b6d4,pos:[-8,0,4]},
-  {id:'perform',name:'במת הופעות',desc:'הופע ורוויח (₪20)',cost:'₪20',reward:'+מעריצים +כסף +מוניטין',color:0xec4899,pos:[8,0,4]},
+  {id:'perform',name:'במת הופעות',desc:'בחר מקום הופעה ולחץ מקשים!',cost:'תלוי במקום',reward:'+מעריצים +כסף +מוניטין',color:0xec4899,pos:[8,0,4]},
   {id:'social',name:'מרכז מדיה',desc:'פרסם ברשתות חברתיות',cost:'חינם',reward:'+מעריצים',color:0xf97316,pos:[0,0,-10]},
   {id:'shop',name:'חנות ציוד',desc:'שדרג ציוד הלהקה',cost:'משתנה',reward:'שדרוגים קבועים',color:0xfbbf24,pos:[0,0,8]},
 ];
 const RAND_EVENTS=[
-  {emoji:'📰',title:'בלוגר מוזיקה!',desc:'בלוגר פופולרי רוצה לראיין אתכם. זה יכול לחשוף אתכם לקהל ענק!',yes:'קבל ראיון',no:'דחה',
+  {emoji:'📰',title:'בלוגר מוזיקה!',desc:'בלוגר פופולרי רוצה לראיין אתכם!',yes:'קבל ראיון',no:'דחה',
    onYes:()=>{addFans(200);toast('✅ ראיון מוצלח! +200 מעריצים');}},
   {emoji:'😤',title:'חבר רוצה לעזוב',desc:'אחד הנגנים מתוסכל. שכנוע יעלה ₪50.',yes:'שכנע (₪50)',no:'שחרר',
    cond:()=>gs.musicians.length>2,
    onYes:()=>{gs.money=Math.max(0,gs.money-50);updateHUD();toast('💸 שכנעת! עלה ₪50');},
    onNo:()=>{if(gs.musicians.length>1){gs.musicians.pop();toast('👋 נגן עזב!');}updateHUD();}},
-  {emoji:'💥',title:'שיר ויראלי ב-TikTok!',desc:'אחד השירים שלכם הפך ויראלי! המעריצים מגיעים בגלים.',yes:'🎉 מעולה!',no:null,
+  {emoji:'💥',title:'שיר ויראלי ב-TikTok!',desc:'אחד השירים שלכם הפך ויראלי!',yes:'🎉 מעולה!',no:null,
    onYes:()=>{const b=Math.floor(gs.fans*0.5)+50;addFans(b);toast('🚀 ויראלי! +'+b+' מעריצים!');}},
   {emoji:'📰',title:'כתבה שלילית',desc:'עיתונאי כתב ביקורת קשה. המוניטין נפגע.',yes:'קבל',no:null,
    onYes:()=>{gs.reputation=Math.max(0,gs.reputation-15);updateHUD();toast('😞 כתבה שלילית! -15 מוניטין');}},
-  {emoji:'🎪',title:'הזמנה לפסטיבל!',desc:'קיבלתם הזמנה לפסטיבל מוזיקה בפני אלפים!',yes:'השתתף',no:'דחה',
+  {emoji:'🎪',title:'הזמנה לפסטיבל!',desc:'קיבלתם הזמנה לפסטיבל מוזיקה!',yes:'השתתף',no:'דחה',
    cond:()=>gs.reputation>=30,
-   onYes:()=>{addFans(1000);gs.money+=200;gs.reputation+=10;updateHUD();toast('🎪 פסטיבל מדהים! +1000 מעריצים, +₪200');}},
-  {emoji:'📻',title:'שידור ברדיו!',desc:'תחנת רדיו מקומית רוצה לנגן שיר שלכם.',yes:'אשר',no:'דחה',
+   onYes:()=>{addFans(1000);gs.money+=200;gs.reputation+=10;updateHUD();toast('🎪 פסטיבל! +1000 מעריצים, +₪200');}},
+  {emoji:'📻',title:'שידור ברדיו!',desc:'תחנת רדיו רוצה לנגן שיר שלכם.',yes:'אשר',no:'דחה',
    cond:()=>gs.songs>0,
    onYes:()=>{addFans(300);gs.reputation+=5;updateHUD();toast('📻 רדיו! +300 מעריצים');}},
-  {emoji:'🎹',title:'גיג פרטי!',desc:'לקוח עשיר מבקש הופעה פרטית בשבילו.',yes:'הופיע (₪150)',no:'דחה',
+  {emoji:'🎹',title:'גיג פרטי!',desc:'לקוח עשיר מבקש הופעה פרטית.',yes:'הופיע (₪150)',no:'דחה',
    cond:()=>gs.reputation>=10&&gs.songs>0,
    onYes:()=>{gs.money+=150;addFans(50);updateHUD();toast('💰 גיג פרטי! +₪150');}},
 ];
@@ -338,7 +433,7 @@ const gs={
   skill:10,mood:80,
   bandName:'',genre:'',city:'',
   character:{name:'',skin:'#f5c9a0',hair:'#3d2b1f',shirt:'#4a90e2',hairStyle:'short'},
-  musicians:[],equipment:{},budgetLevel:'normal',
+  musicians:[],equipment:{},brokenEquipment:{},budgetLevel:'normal',
   keyBindings:{practice:'P',write:'W',record:'R',perform:'F',social:'M',shop:'S'},
   musicVol:70,sfxVol:70,careerStage:0,
 };
@@ -355,8 +450,7 @@ function initMenuAnim(){
     ctx.fillStyle='#0a0a1a';ctx.fillRect(0,0,c.width,c.height);
     stars.forEach(s=>{
       s.y+=s.spd*.25;if(s.y>c.height){s.y=0;s.x=Math.random()*c.width;}
-      s.x%=c.width;
-      s.a=.4+.4*Math.sin(Date.now()*.001+s.x*.01);
+      s.x%=c.width;s.a=.4+.4*Math.sin(Date.now()*.001+s.x*.01);
       ctx.beginPath();ctx.arc(s.x%c.width,s.y,s.r,0,Math.PI*2);
       ctx.fillStyle=`rgba(200,180,255,${s.a})`;ctx.fill();
     });
@@ -381,15 +475,13 @@ function showScreen(id){
 // ── CREATE FLOW ───────────────────────────────────────────────────────────
 let step=0;
 function showCreate(toSettings){step=toSettings?4:0;showScreen('create');renderStep();}
-
 const STEPS=[
   {title:'שם וז׳אנר',desc:'איך תיקרא הלהקה ומה הז׳אנר שלה?'},
-  {title:'עיר פתיחה',desc:'בחר את העיר שבה הלהקה מתחילה את הדרך'},
+  {title:'עיר פתיחה',desc:'בחר את העיר שבה הלהקה מתחילה'},
   {title:'עיצוב דמות',desc:'עצב את הדמות שמייצגת אותך'},
   {title:'גיוס נגנים',desc:'בחר 2 עד 4 נגנים ללהקה'},
   {title:'הגדרות',desc:'כוון לפני היציאה לדרך'},
 ];
-
 function renderStep(){
   const ind=document.getElementById('step-ind');
   ind.innerHTML=STEPS.map((_,i)=>`<div class="sdot ${i<step?'done':i===step?'active':''}">${i<step?'✓':i+1}</div>`).join('');
@@ -400,7 +492,6 @@ function renderStep(){
     <button class="btn btn-p" onclick="nextStep()">${step===4?'התחל לנגן 🎸':'המשך →'}</button>`;
   if(step===2)setTimeout(drawChar,0);
 }
-
 function stepContent(s){
   switch(s){
     case 0:return `
@@ -437,12 +528,11 @@ function stepContent(s){
       <label class="flabel">תקציב התחלתי</label>
       <div class="budget-row">${[{k:'hard',l:'מאתגר',a:200},{k:'normal',l:'רגיל',a:400},{k:'easy',l:'קל',a:700},{k:'manager',l:'מנהל',a:1200}].map(b=>`<div class="bbtn${gs.budgetLevel===b.k?' sel':''}" onclick="setBudget('${b.k}',${b.a})"><div class="blabel">${b.l}</div><div class="bamount">₪${b.a}</div></div>`).join('')}</div>
       <label class="flabel">עוצמת מוזיקה</label>
-      <div class="vol-row"><span>🎵</span><input type="range" class="vslider" min="0" max="100" value="${gs.musicVol}" oninput="gs.musicVol=+this.value"><span style="color:#a0a0c0;font-size:13px" id="vm">${gs.musicVol}</span></div>
+      <div class="vol-row"><span>🎵</span><input type="range" class="vslider" min="0" max="100" value="${gs.musicVol}" oninput="gs.musicVol=+this.value"><span style="color:#a0a0c0;font-size:13px">${gs.musicVol}</span></div>
       <label class="flabel">עוצמת אפקטים</label>
-      <div class="vol-row"><span>🔊</span><input type="range" class="vslider" min="0" max="100" value="${gs.sfxVol}" oninput="gs.sfxVol=+this.value"><span style="color:#a0a0c0;font-size:13px" id="vs">${gs.sfxVol}</span></div>`;
+      <div class="vol-row"><span>🔊</span><input type="range" class="vslider" min="0" max="100" value="${gs.sfxVol}" oninput="gs.sfxVol=+this.value"><span style="color:#a0a0c0;font-size:13px">${gs.sfxVol}</span></div>`;
   }
 }
-
 function setProp(k,v){gs.character[k]=v;renderStep();}
 function toggleMus(id){
   const i=gs.musicians.findIndex(m=>m.id===id);
@@ -451,7 +541,6 @@ function toggleMus(id){
   renderStep();
 }
 function setBudget(k,a){gs.budgetLevel=k;gs.money=a;renderStep();}
-
 function nextStep(){
   if(step===0){
     gs.bandName=(document.getElementById('inp-bn')?.value||gs.bandName).trim()||'להקת כוכבים';
@@ -467,45 +556,33 @@ function prevStep(){if(step>0){step--;renderStep();}}
 
 // ── CHARACTER CANVAS ──────────────────────────────────────────────────────
 function drawChar(){
-  const c=document.getElementById('char-canvas');
-  if(!c)return;
+  const c=document.getElementById('char-canvas');if(!c)return;
   const ctx=c.getContext('2d'),W=180,H=240,cx=W/2;
   ctx.clearRect(0,0,W,H);
-  const bg=ctx.createLinearGradient(0,0,0,H);
-  bg.addColorStop(0,'#1a1a3e');bg.addColorStop(1,'#2a1a4e');
+  const bg=ctx.createLinearGradient(0,0,0,H);bg.addColorStop(0,'#1a1a3e');bg.addColorStop(1,'#2a1a4e');
   ctx.fillStyle=bg;ctx.fillRect(0,0,W,H);
   const {skin,hair,shirt,hairStyle}=gs.character;
-  // body
   ctx.fillStyle=shirt;ctx.beginPath();ctx.roundRect(cx-24,130,48,55,4);ctx.fill();
-  // neck
   ctx.fillStyle=skin;ctx.fillRect(cx-7,116,14,18);
-  // head
   ctx.fillStyle=skin;ctx.beginPath();ctx.ellipse(cx,100,24,26,0,0,Math.PI*2);ctx.fill();
-  // hair
   ctx.fillStyle=hair;
   if(hairStyle==='short'){ctx.beginPath();ctx.ellipse(cx,78,26,18,0,Math.PI,Math.PI*2);ctx.fill();}
   else if(hairStyle==='medium'){ctx.beginPath();ctx.ellipse(cx,78,26,18,0,Math.PI,Math.PI*2);ctx.fill();ctx.fillRect(cx-26,78,7,22);ctx.fillRect(cx+19,78,7,22);}
   else if(hairStyle==='long'){ctx.beginPath();ctx.ellipse(cx,78,26,18,0,Math.PI,Math.PI*2);ctx.fill();ctx.fillRect(cx-26,78,7,50);ctx.fillRect(cx+19,78,7,50);}
   else{ctx.beginPath();ctx.ellipse(cx,74,34,28,0,0,Math.PI*2);ctx.fill();}
-  // eyes
   ctx.fillStyle='#1a1a2e';
   ctx.beginPath();ctx.ellipse(cx-9,97,3.5,4.5,0,0,Math.PI*2);ctx.fill();
   ctx.beginPath();ctx.ellipse(cx+9,97,3.5,4.5,0,0,Math.PI*2);ctx.fill();
-  // smile
   ctx.strokeStyle='#5a3a2a';ctx.lineWidth=1.8;ctx.beginPath();ctx.arc(cx,108,8,0,Math.PI);ctx.stroke();
-  // arms
   ctx.fillStyle=skin;
   ctx.beginPath();ctx.roundRect(cx-38,133,13,38,5);ctx.fill();
   ctx.beginPath();ctx.roundRect(cx+25,133,13,38,5);ctx.fill();
-  // legs
   ctx.fillStyle='#2c3e50';
   ctx.beginPath();ctx.roundRect(cx-20,183,17,35,4);ctx.fill();
   ctx.beginPath();ctx.roundRect(cx+3,183,17,35,4);ctx.fill();
-  // shoes
   ctx.fillStyle='#111';
   ctx.beginPath();ctx.roundRect(cx-23,214,21,10,3);ctx.fill();
   ctx.beginPath();ctx.roundRect(cx+1,214,21,10,3);ctx.fill();
-  // guitar
   ctx.fillStyle='#c0873a';ctx.beginPath();ctx.ellipse(cx+34,158,8,11,-0.3,0,Math.PI*2);ctx.fill();
   ctx.fillStyle='#8d5524';ctx.fillRect(cx+32,140,3,18);
 }
@@ -518,11 +595,8 @@ function startGame(){
   gs.money=Math.max(0,gs.money-cost);
   if(!gs.musicians.length){gs.musicians=[MUSICIANS[0],MUSICIANS[1]];}
   gs.week=1;gs.fans=0;gs.reputation=0;gs.songs=0;gs.recordedTracks=0;
-  gs.skill=10;gs.mood=80;gs.equipment={};gs.careerStage=0;
-  showScreen('game');
-  initThree();
-  updateHUD();
-  updateKeyHints();
+  gs.skill=10;gs.mood=80;gs.equipment={};gs.brokenEquipment={};gs.careerStage=0;
+  showScreen('game');initThree();updateHUD();updateKeyHints();
 }
 
 // ── THREE.JS ──────────────────────────────────────────────────────────────
@@ -537,55 +611,41 @@ function initThree(){
   renderer=new THREE.WebGLRenderer({canvas,antialias:true});
   renderer.setSize(window.innerWidth,window.innerHeight);
   renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
-  renderer.shadowMap.enabled=true;
-  renderer.shadowMap.type=THREE.PCFSoftShadowMap;
+  renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;
   renderer.setClearColor(0x050510);
-  scene=new THREE.Scene();
-  scene.fog=new THREE.Fog(0x050510,30,80);
+  scene=new THREE.Scene();scene.fog=new THREE.Fog(0x050510,30,80);
   camera=new THREE.PerspectiveCamera(60,window.innerWidth/window.innerHeight,0.1,200);
   camera.position.set(0,18,22);camera.lookAt(0,0,0);
   raycaster=new THREE.Raycaster();mouse=new THREE.Vector2();
-  buildScene();
-  setupControls();
+  buildScene();setupControls();
   window.addEventListener('resize',onResize);
   canvas.addEventListener('mousemove',onMMove);
   canvas.addEventListener('click',onClick);
   animate();
 }
-
 function buildScene(){
-  // Ground
   const gnd=new THREE.Mesh(new THREE.PlaneGeometry(100,100),new THREE.MeshLambertMaterial({color:0x0a0a1e}));
   gnd.rotation.x=-Math.PI/2;gnd.receiveShadow=true;scene.add(gnd);
   scene.add(new THREE.GridHelper(60,30,0x1a1a3e,0x1a1a3e));
-  // Stars
-  const sg=new THREE.BufferGeometry();
-  const sp=[];
+  const sg=new THREE.BufferGeometry();const sp=[];
   for(let i=0;i<800;i++)sp.push((Math.random()-.5)*200,Math.random()*80+20,(Math.random()-.5)*200);
   sg.setAttribute('position',new THREE.Float32BufferAttribute(sp,3));
   scene.add(new THREE.Points(sg,new THREE.PointsMaterial({color:0xffffff,size:.3,transparent:true,opacity:.8})));
-  // Buildings
   buildBuildings();
-  // Lights
   scene.add(new THREE.AmbientLight(0x1a0a2e,1));
   const pl=new THREE.PointLight(0xa855f7,3,40);pl.position.set(-10,10,0);scene.add(pl);scene._pl=pl;
   const pk=new THREE.PointLight(0xec4899,3,40);pk.position.set(10,10,0);scene.add(pk);scene._pk=pk;
   const dl=new THREE.DirectionalLight(0x8080ff,.5);dl.position.set(0,30,10);dl.castShadow=true;scene.add(dl);
-  // Location spheres
   LOCS.forEach(loc=>{
     const grp=new THREE.Group();grp.position.set(...loc.pos);
-    const plat=new THREE.Mesh(new THREE.CylinderGeometry(1.8,1.8,.2,16),new THREE.MeshLambertMaterial({color:0x1a1a3e}));
-    grp.add(plat);
+    const plat=new THREE.Mesh(new THREE.CylinderGeometry(1.8,1.8,.2,16),new THREE.MeshLambertMaterial({color:0x1a1a3e}));grp.add(plat);
     const sph=new THREE.Mesh(new THREE.SphereGeometry(.8,16,16),new THREE.MeshLambertMaterial({color:loc.color,emissive:loc.color,emissiveIntensity:.5}));
     sph.position.y=1.5;sph.userData.loc=loc;grp.add(sph);
     const lgt=new THREE.PointLight(loc.color,1.5,6);lgt.position.y=1.5;grp.add(lgt);
-    scene.add(grp);
-    locSpheres.push({grp,sph,lgt,loc});
+    scene.add(grp);locSpheres.push({grp,sph,lgt,loc});
   });
-  // Band figures
   buildFigures();
 }
-
 function buildBuildings(){
   const cols=[0x1a0a3e,0x0a1a3e,0x2a0a2e,0x0a2a3e,0x1e0e4e];
   [[-20,5,-15],[-15,8,-15],[-10,6,-18],[-5,10,-16],[5,7,-18],[10,9,-15],[15,6,-17],[20,11,-15],[25,5,-15],
@@ -601,21 +661,16 @@ function buildBuildings(){
     }
   });
 }
-
 function buildFigures(){
   bandFigs=[];
   const pos=[[-2,0,0],[2,0,0],[0,0,-2],[0,0,2]];
   const allColors=[parseInt(gs.character.shirt.replace('#',''),16)||0x4a90e2,...gs.musicians.map(m=>parseInt(m.color.replace('#',''),16))];
   for(let i=0;i<Math.min(gs.musicians.length+1,4);i++){
-    const g=makeFig(allColors[i]||0x888888);
-    g.position.set(...pos[i]);
-    scene.add(g);bandFigs.push(g);
+    const g=makeFig(allColors[i]||0x888888);g.position.set(...pos[i]);scene.add(g);bandFigs.push(g);
   }
 }
-
 function makeFig(col){
-  const g=new THREE.Group();
-  const bm=new THREE.MeshLambertMaterial({color:col});
+  const g=new THREE.Group();const bm=new THREE.MeshLambertMaterial({color:col});
   const body=new THREE.Mesh(new THREE.BoxGeometry(.8,1.2,.5),bm);body.position.y=1.2;g.add(body);
   const head=new THREE.Mesh(new THREE.BoxGeometry(.6,.6,.6),new THREE.MeshLambertMaterial({color:0xf5c9a0}));head.position.y=2.1;g.add(head);
   const aL=new THREE.Mesh(new THREE.BoxGeometry(.25,.9,.25),bm);aL.position.set(-.55,1.2,0);aL.rotation.z=.2;g.add(aL);
@@ -625,36 +680,28 @@ function makeFig(col){
   const lR=lL.clone();lR.position.set(.22,.45,0);g.add(lR);
   return g;
 }
-
 function setupControls(){
   const c=document.getElementById('three-canvas');
   c.addEventListener('mousedown',e=>{isDrag=true;lastMX=e.clientX;lastMY=e.clientY;});
   c.addEventListener('mousemove',e=>{
-    if(isDrag){
-      camTheta-=(e.clientX-lastMX)*.01;
-      camPhi=Math.max(.2,Math.min(1.4,camPhi+(e.clientY-lastMY)*.01));
-      lastMX=e.clientX;lastMY=e.clientY;updateCam();
-    }
+    if(isDrag){camTheta-=(e.clientX-lastMX)*.01;camPhi=Math.max(.2,Math.min(1.4,camPhi+(e.clientY-lastMY)*.01));lastMX=e.clientX;lastMY=e.clientY;updateCam();}
   });
   c.addEventListener('mouseup',()=>isDrag=false);
   c.addEventListener('mouseleave',()=>isDrag=false);
   c.addEventListener('wheel',e=>{camRadius=Math.max(10,Math.min(50,camRadius+e.deltaY*.05));updateCam();});
 }
-
 function updateCam(){
   camera.position.x=camRadius*Math.sin(camPhi)*Math.sin(camTheta);
   camera.position.y=camRadius*Math.cos(camPhi);
   camera.position.z=camRadius*Math.sin(camPhi)*Math.cos(camTheta);
   camera.lookAt(0,1,0);
 }
-
 function animate(){
   requestAnimationFrame(animate);animT+=.016;
   if(scene._pl){scene._pl.position.x=Math.sin(animT*.5)*15;scene._pl.position.z=Math.cos(animT*.5)*15;}
   if(scene._pk){scene._pk.position.x=Math.cos(animT*.5)*15;scene._pk.position.z=Math.sin(animT*.5)*15;}
   locSpheres.forEach((ls,i)=>{
-    ls.sph.position.y=1.5+Math.sin(animT*2+i)*.15;
-    ls.sph.rotation.y+=.01;
+    ls.sph.position.y=1.5+Math.sin(animT*2+i)*.15;ls.sph.rotation.y+=.01;
     ls.sph.material.emissiveIntensity=hoveredLS===ls?.9+.1*Math.sin(animT*5):.4+.2*Math.sin(animT*3+i);
   });
   bandFigs.forEach((f,i)=>{
@@ -663,11 +710,9 @@ function animate(){
   });
   renderer.render(scene,camera);
 }
-
 function onMMove(e){
   if(isDrag)return;
-  mouse.x=(e.clientX/window.innerWidth)*2-1;
-  mouse.y=-(e.clientY/window.innerHeight)*2+1;
+  mouse.x=(e.clientX/window.innerWidth)*2-1;mouse.y=-(e.clientY/window.innerHeight)*2+1;
   raycaster.setFromCamera(mouse,camera);
   const hits=raycaster.intersectObjects(locSpheres.map(l=>l.sph));
   if(hits.length){
@@ -676,38 +721,30 @@ function onMMove(e){
   }
   hoveredLS=null;pendingAction=null;hideTT();document.body.style.cursor='default';
 }
-
 function onClick(){if(!isDrag&&pendingAction)doAction(pendingAction);}
-
 function showTT(loc,x,y){
   const tt=document.getElementById('tooltip');
   document.getElementById('tt-name').textContent=loc.name;
   document.getElementById('tt-desc').textContent=loc.desc;
   document.getElementById('tt-cost').textContent=`עלות: ${loc.cost} · תגמול: ${loc.reward}`;
   document.getElementById('tt-btn').textContent=`▶ ${loc.name}`;
-  let L=x+16,T=y-80;
-  if(L+290>window.innerWidth)L=x-300;
-  if(T<65)T=65;
+  let L=x+16,T=y-80;if(L+290>window.innerWidth)L=x-300;if(T<65)T=65;
   tt.style.left=L+'px';tt.style.top=T+'px';tt.style.display='block';
 }
 function hideTT(){document.getElementById('tooltip').style.display='none';}
-
-function onResize(){
-  camera.aspect=window.innerWidth/window.innerHeight;camera.updateProjectionMatrix();
-  renderer.setSize(window.innerWidth,window.innerHeight);
-}
+function onResize(){camera.aspect=window.innerWidth/window.innerHeight;camera.updateProjectionMatrix();renderer.setSize(window.innerWidth,window.innerHeight);}
 
 // ── ACTIONS ───────────────────────────────────────────────────────────────
 function doAction(id){
   hideTT();
   if(id==='shop'){openShop();return;}
+  if(id==='perform'){startPerformFlow();return;}
   const talent=gs.musicians.reduce((a,m)=>a+m.talent,0)/gs.musicians.length;
   const gm=genreMult(id),cm=cityMult(id);
   let msg='';
   switch(id){
     case 'practice':{
-      const sk=Math.floor((2+Math.random()*4)*gm);
-      const mo=Math.floor(5+Math.random()*10);
+      const sk=Math.floor((2+Math.random()*4)*gm);const mo=Math.floor(5+Math.random()*10);
       gs.skill=Math.min(100,gs.skill+sk);gs.mood=Math.min(100,gs.mood+mo);
       msg=`💪 תרגלתם! +${sk} כישור, +${mo}% מצב רוח`;break;}
     case 'write':{
@@ -721,16 +758,8 @@ function doAction(id){
       gs.money-=30;gs.recordedTracks++;
       const inc=Math.floor((20+talent*10+gs.skill)*gm*cm*eqMult('record'));
       gs.money+=inc;gs.reputation+=3;
+      maybeBreakEquipment(['mic','mixer']);
       msg=`🎙️ הקלטה! +₪${inc}, +3 מוניטין`;break;}
-    case 'perform':{
-      if(gs.money<20){toast('❌ צריך ₪20!');return;}
-      if(gs.songs===0){toast('❌ אין שירים!');return;}
-      gs.money-=20;
-      const pf=Math.floor((30+talent*20+gs.reputation*2)*gm*cm*eqMult('perform'));
-      const pm=Math.floor((50+talent*30+gs.reputation*3)*cm*eqMult('performIncome'));
-      const pr=Math.floor((3+talent)*eqMult('repPerform'));
-      addFans(pf);gs.money+=pm;gs.reputation=Math.min(100,gs.reputation+pr);
-      msg=`🎤 הופעה! +${pf} מעריצים, +₪${pm}, +${pr} מוניטין`;break;}
     case 'social':{
       const sf=Math.floor((10+Math.random()*25)*gm*cm*eqMult('social'));
       addFans(sf);gs.reputation=Math.min(100,gs.reputation+1);
@@ -740,28 +769,189 @@ function doAction(id){
   if(Math.random()<.28)setTimeout(triggerEvent,1500);
 }
 
+// ── VENUE PICKER ──────────────────────────────────────────────────────────
+function startPerformFlow(){
+  if(gs.songs===0){toast('❌ אין שירים להופעה! כתוב שיר קודם.');return;}
+  const grid=document.getElementById('venue-grid');
+  grid.innerHTML=VENUES.map(v=>{
+    const locked=gs.reputation<v.repReq||gs.money<v.cost;
+    return `<div class="vcard${locked?' vlocked':''}" onclick="${locked?'':'selectVenue(\''+v.id+'\')'}">
+      <div class="vemo">${v.emoji}</div>
+      <div class="vinfo">
+        <div class="vname">${v.name}</div>
+        <div class="vdesc">${v.desc}</div>
+        <div class="vtags">
+          <span class="vtag vtag-cost">${v.cost>0?'₪'+v.cost:'חינם'}</span>
+          ${v.repReq>0?`<span class="vtag vtag-req">⭐ ${v.repReq} מוניטין</span>`:''}
+          <span class="vtag vtag-mult">×${v.mult} תגמולים</span>
+          ${locked?`<span class="vtag vtag-lock">🔒 נעול</span>`:''}
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+  document.getElementById('venue-overlay').classList.add('open');
+}
+function closeVenue(){document.getElementById('venue-overlay').classList.remove('open');}
+
+function selectVenue(venueId){
+  const venue=VENUES.find(v=>v.id===venueId);
+  if(!venue)return;
+  if(gs.money<venue.cost){toast('❌ אין מספיק כסף!');return;}
+  if(gs.reputation<venue.repReq){toast('❌ צריך יותר מוניטין!');return;}
+  gs.money-=venue.cost;
+  closeVenue();
+  startPerformMG(venue);
+}
+
+// ── PERFORMANCE MINI-GAME ─────────────────────────────────────────────────
+const MG_KEYS='ASDFJKLQWERTYUIOP'.split('');
+const MG_TOTAL=8,MG_KEY_DURATION=1200,MG_TOTAL_TIME=MG_TOTAL*MG_KEY_DURATION;
+let mgVenue=null,mgHits=0,mgShown=0,mgCurrentKey='',mgKeyTimer=null,mgMainTimer=null,mgStartTime=0,mgCdInterval=null;
+let mgKeyHandler=null;
+
+function startPerformMG(venue){
+  mgVenue=venue;mgHits=0;mgShown=0;mgCurrentKey='';
+  document.getElementById('perf-game').style.display='flex';
+  document.getElementById('perf-game').style.flexDirection='column';
+  document.getElementById('perf-game').style.alignItems='center';
+  document.getElementById('perf-result').classList.remove('show');
+  document.getElementById('perf-venue-label').textContent=`📍 ${venue.emoji} ${venue.name}`;
+  document.getElementById('perf-hits').textContent='0/'+MG_TOTAL;
+  document.getElementById('perf-stars').textContent='☆☆☆☆☆';
+  document.getElementById('perf-timer-fill').style.width='100%';
+  document.getElementById('perf-key-box').className='perf-key-box';
+  document.getElementById('perf-key-box').textContent='?';
+  document.getElementById('perf-overlay').classList.add('open');
+  mgStartTime=Date.now();
+
+  // Key listener
+  mgKeyHandler=e=>{
+    const k=e.key.toUpperCase();
+    if(k===mgCurrentKey&&mgShown>0){
+      mgHits++;
+      const box=document.getElementById('perf-key-box');
+      box.className='perf-key-box hit';
+      setTimeout(()=>box.classList.remove('hit'),200);
+      updateMGScore();
+    }
+  };
+  document.addEventListener('keydown',mgKeyHandler);
+
+  // Show first key immediately, then subsequent ones on timer
+  showNextKey();
+
+  // Main timer bar
+  const barInterval=setInterval(()=>{
+    const elapsed=Date.now()-mgStartTime;
+    const pct=Math.max(0,(MG_TOTAL_TIME-elapsed)/MG_TOTAL_TIME*100);
+    document.getElementById('perf-timer-fill').style.width=pct+'%';
+    if(elapsed>=MG_TOTAL_TIME){clearInterval(barInterval);endPerformMG();}
+  },50);
+  scene._mgBarInterval=barInterval;
+}
+
+function showNextKey(){
+  if(mgShown>=MG_TOTAL){return;}
+  mgShown++;
+  mgCurrentKey=MG_KEYS[Math.floor(Math.random()*MG_KEYS.length)];
+  const box=document.getElementById('perf-key-box');
+  box.className='perf-key-box';
+  box.textContent=mgCurrentKey;
+  // Countdown fill
+  const fill=document.getElementById('perf-cd-fill');
+  fill.style.transition='none';fill.style.width='100%';
+  requestAnimationFrame(()=>{
+    fill.style.transition=`width ${MG_KEY_DURATION}ms linear`;
+    fill.style.width='0%';
+  });
+  clearTimeout(mgKeyTimer);
+  mgKeyTimer=setTimeout(()=>{
+    // Miss — key expired
+    box.className='perf-key-box miss';
+    setTimeout(()=>{box.className='perf-key-box';showNextKey();},200);
+  },MG_KEY_DURATION);
+}
+
+function updateMGScore(){
+  document.getElementById('perf-hits').textContent=mgHits+'/'+MG_TOTAL;
+  const stars=Math.round(mgHits/MG_TOTAL*5);
+  document.getElementById('perf-stars').textContent='★'.repeat(stars)+'☆'.repeat(5-stars);
+  // After hit, move to next key
+  clearTimeout(mgKeyTimer);
+  setTimeout(showNextKey,150);
+}
+
+function endPerformMG(){
+  if(mgKeyHandler){document.removeEventListener('keydown',mgKeyHandler);mgKeyHandler=null;}
+  clearTimeout(mgKeyTimer);if(scene._mgBarInterval)clearInterval(scene._mgBarInterval);
+  mgCurrentKey='';
+
+  const score=mgHits/MG_TOTAL; // 0..1
+  const stars=Math.round(score*5);
+  const perfMult=0.3+score*1.7; // 0.3x (0 hits) to 2.0x (all hits)
+
+  // Calculate rewards
+  const talent=gs.musicians.reduce((a,m)=>a+m.talent,0)/gs.musicians.length;
+  const gm=genreMult('perform'),cm=cityMult('perform');
+  const baseFans=Math.floor((30+talent*20+gs.reputation*2)*gm*cm*eqMult('perform')*mgVenue.mult);
+  const baseMoney=Math.floor((50+talent*30+gs.reputation*3)*cm*eqMult('performIncome')*mgVenue.mult);
+  const baseRep=Math.floor((3+talent)*eqMult('repPerform'));
+  const earnedFans=Math.floor(baseFans*perfMult);
+  const earnedMoney=Math.floor(baseMoney*perfMult);
+  const earnedRep=Math.max(1,Math.floor(baseRep*perfMult));
+
+  addFans(earnedFans);gs.money+=earnedMoney;gs.reputation=Math.min(100,gs.reputation+earnedRep);
+  maybeBreakEquipment(['guitar','lights','amp','mic']);
+  gs.week++;updateHUD();jumpAnim();
+
+  // Show result
+  const emojis=['😬','😐','🙂','😊','🤩','🔥'];
+  const comments=['ביצוע חלש... הקהל עזב מוקדם','הופעה בינונית','הופעה סבירה','הופעה טובה!','הופעה מדהימה!','הופעה מושלמת! האגדה ממשיכה!'];
+  document.getElementById('perf-game').style.display='none';
+  const res=document.getElementById('perf-result');
+  res.classList.add('show');
+  document.getElementById('pr-emo').textContent=emojis[stars];
+  document.getElementById('pr-title').textContent='★'.repeat(stars)+'☆'.repeat(5-stars)+' '+Math.round(score*100)+'%';
+  document.getElementById('pr-sub').textContent=`${comments[stars]}\n\n+${earnedFans} מעריצים · +₪${earnedMoney} · +${earnedRep} מוניטין`;
+
+  if(Math.random()<.28)setTimeout(triggerEvent,2000);
+}
+
+function closePerfOverlay(){
+  document.getElementById('perf-overlay').classList.remove('open');
+  document.getElementById('perf-result').classList.remove('show');
+  document.getElementById('perf-game').style.display='';
+}
+
+// ── EQUIPMENT BREAKING ────────────────────────────────────────────────────
+function maybeBreakEquipment(candidates){
+  if(Math.random()>.15)return;
+  const owned=candidates.filter(id=>gs.equipment[id]&&!gs.brokenEquipment[id]);
+  if(!owned.length)return;
+  const broke=owned[Math.floor(Math.random()*owned.length)];
+  gs.brokenEquipment[broke]=true;
+  const item=SHOP_ITEMS.find(i=>i.id===broke);
+  toast(`🔧 ${item?.emoji} ${item?.name} נשבר! יש לתקן בחנות.`);
+}
+
+// ── MULTIPLIERS ───────────────────────────────────────────────────────────
 function genreMult(action){
-  const g=GENRES.find(x=>x.id===gs.genre);
-  if(!g)return 1;
   const map={rock:{write:1.1,song:1.1},pop:{perform:1.15,social:1.15},jazz:{perform:1.1,rep:1.1},hiphop:{social:1.15},metal:{perform:1.1},electronic:{record:1.1}};
   return map[gs.genre]?.[action]||1;
 }
-
 function cityMult(action){
-  const c=CITIES.find(x=>x.id===gs.city);
-  if(!c)return 1;
-  const matches={social:['social'],repPerform:['perform'],performIncome:['perform'],allSongs:['write','record'],shopDiscount:['shop']};
+  const c=CITIES.find(x=>x.id===gs.city);if(!c)return 1;
+  const matches={social:['social'],repPerform:['perform'],performIncome:['perform'],allSongs:['write','record']};
   if(matches[c.bk]?.includes(action))return c.bm;
   return 1;
 }
-
 function eqMult(t){
   let m=1;
-  if(gs.equipment.mic&&t==='record')m*=1.15;
-  if(gs.equipment.mixer&&t==='record')m*=1.2;
-  if(gs.equipment.guitar&&t==='perform')m*=1.2;
-  if(gs.equipment.lights&&t==='perform')m*=1.25;
-  if(gs.equipment.amp&&t==='performIncome')m*=1.3;
+  if(gs.equipment.mic&&!gs.brokenEquipment.mic&&t==='record')m*=1.15;
+  if(gs.equipment.mixer&&!gs.brokenEquipment.mixer&&t==='record')m*=1.2;
+  if(gs.equipment.guitar&&!gs.brokenEquipment.guitar&&t==='perform')m*=1.2;
+  if(gs.equipment.lights&&!gs.brokenEquipment.lights&&t==='perform')m*=1.25;
+  if(gs.equipment.amp&&!gs.brokenEquipment.amp&&t==='performIncome')m*=1.3;
   if(gs.equipment.camera&&t==='social')m*=1.3;
   if(gs.equipment.manager)m*=1.15;
   return m;
@@ -775,6 +965,16 @@ function openShop(){
   document.getElementById('sh-items').innerHTML=SHOP_ITEMS.map(item=>{
     const p=Math.floor(item.price*disc);
     const bought=gs.equipment[item.id];
+    const broken=gs.brokenEquipment[item.id];
+    const repairPrice=Math.floor(item.price*0.5);
+    if(broken){
+      return `<div class="sitem broken">
+        <div class="siname">${item.emoji} ${item.name} 🔧</div>
+        <div class="sieff" style="color:#f97316">⚠️ שבור — לא פעיל</div>
+        <div class="siprice">תיקון: ₪${repairPrice}</div>
+        <button class="sibuy repair"${gs.money>=repairPrice?'':' disabled'} onclick="repairItem('${item.id}',${repairPrice})">${gs.money>=repairPrice?'🔧 תקן':'אין מספיק'}</button>
+      </div>`;
+    }
     return `<div class="sitem${bought?' bought':''}">
       <div class="siname">${item.emoji} ${item.name}</div>
       <div class="sieff">${item.eff}</div>
@@ -789,6 +989,11 @@ function buyItem(id,price){
   gs.money-=price;gs.equipment[id]=true;
   if(id==='radio'){addFans(200);}
   updateHUD();openShop();toast('✅ נרכש! '+SHOP_ITEMS.find(i=>i.id===id).name);
+}
+function repairItem(id,price){
+  if(gs.money<price)return;
+  gs.money-=price;delete gs.brokenEquipment[id];
+  updateHUD();openShop();toast('🔧 תוקן! '+SHOP_ITEMS.find(i=>i.id===id).name+' חזר לפעולה');
 }
 function closeShop(){document.getElementById('shop-overlay').classList.remove('open');}
 
@@ -811,12 +1016,11 @@ function closeEv(){document.getElementById('ev-overlay').classList.remove('open'
 
 // ── CAREER STAGES ─────────────────────────────────────────────────────────
 function addFans(n){
-  const prev=gs.fans;gs.fans+=n;
+  gs.fans+=n;
   for(let i=gs.careerStage+1;i<CAREER_STAGES.length;i++){
     if(gs.fans>=CAREER_STAGES[i].fans){gs.careerStage=i;showMilestone(CAREER_STAGES[i]);}
   }
 }
-
 function showMilestone(s){
   document.getElementById('ms-emo').textContent=s.emoji;
   document.getElementById('ms-title').textContent=s.name+'!';
@@ -827,8 +1031,7 @@ function closeMilestone(){document.getElementById('ms-overlay').classList.remove
 
 // ── HUD ───────────────────────────────────────────────────────────────────
 function updateHUD(){
-  const g=GENRES.find(x=>x.id===gs.genre);
-  const c=CITIES.find(x=>x.id===gs.city);
+  const g=GENRES.find(x=>x.id===gs.genre);const c=CITIES.find(x=>x.id===gs.city);
   document.getElementById('h-band').textContent=gs.bandName||'הלהקה שלי';
   document.getElementById('h-gc').textContent=`${g?.emoji||''} ${g?.name||''} · ${c?.name||''}`;
   document.getElementById('h-fans').textContent=fmt(gs.fans);
@@ -836,34 +1039,31 @@ function updateHUD(){
   document.getElementById('h-rep').textContent=gs.reputation;
   document.getElementById('h-songs').textContent=gs.songs;
   document.getElementById('h-week').textContent='שבוע '+gs.week;
-  // Career badge
-  const cs=CAREER_STAGES[gs.careerStage];
-  const ns=CAREER_STAGES[gs.careerStage+1];
+  const cs=CAREER_STAGES[gs.careerStage];const ns=CAREER_STAGES[gs.careerStage+1];
   document.getElementById('cb-stage').textContent=cs.emoji+' '+cs.name;
   if(ns)document.getElementById('cb-next').textContent=`עד ${ns.name}: ${Math.max(0,ns.fans-gs.fans).toLocaleString()} מעריצים`;
   else document.getElementById('cb-next').textContent='הגעתם לפסגה! 👑';
+  // Show broken warning in badge if any broken
+  const brokenCount=Object.keys(gs.brokenEquipment).length;
+  if(brokenCount>0){
+    document.getElementById('cb-next').textContent+=' · 🔧 '+brokenCount+' שבור';
+  }
 }
-
 function fmt(n){if(n>=1e6)return(n/1e6).toFixed(1)+'M';if(n>=1000)return(n/1000).toFixed(1)+'K';return n+'';}
 
 // ── TOAST ─────────────────────────────────────────────────────────────────
 let toastT;
 function toast(msg){
-  const el=document.getElementById('toast');
-  el.textContent=msg;el.classList.add('show');
-  clearTimeout(toastT);toastT=setTimeout(()=>el.classList.remove('show'),2800);
+  const el=document.getElementById('toast');el.textContent=msg;el.classList.add('show');
+  clearTimeout(toastT);toastT=setTimeout(()=>el.classList.remove('show'),3000);
 }
 
 // ── JUMP ANIMATION ────────────────────────────────────────────────────────
 function jumpAnim(){
   bandFigs.forEach((f,i)=>{
     const t0=Date.now()+i*80;
-    const go=()=>{
-      const dt=Date.now()-t0;
-      if(dt<0){requestAnimationFrame(go);return;}
-      if(dt<400){f.position.y=Math.sin(dt/400*Math.PI)*1.5;requestAnimationFrame(go);}
-      else f.position.y=0;
-    };requestAnimationFrame(go);
+    const go=()=>{const dt=Date.now()-t0;if(dt<0){requestAnimationFrame(go);return;}if(dt<400){f.position.y=Math.sin(dt/400*Math.PI)*1.5;requestAnimationFrame(go);}else f.position.y=0;};
+    requestAnimationFrame(go);
   });
 }
 
@@ -877,8 +1077,9 @@ function updateKeyHints(){
   document.getElementById('kM').textContent=kb.social;
   document.getElementById('kS').textContent=kb.shop;
 }
-
 document.addEventListener('keydown',e=>{
+  // Mini-game captures its own keys via mgKeyHandler; block game shortcuts during it
+  if(document.getElementById('perf-overlay').classList.contains('open'))return;
   if(!document.getElementById('screen-game').classList.contains('active'))return;
   const key=e.key.toUpperCase(),kb=gs.keyBindings;
   if(key===kb.practice.toUpperCase())doAction('practice');
@@ -887,7 +1088,7 @@ document.addEventListener('keydown',e=>{
   else if(key===kb.perform.toUpperCase())doAction('perform');
   else if(key===kb.social.toUpperCase())doAction('social');
   else if(key===kb.shop.toUpperCase())doAction('shop');
-  else if(key==='ESCAPE'){closeShop();closeEv();closeMilestone();}
+  else if(key==='ESCAPE'){closeShop();closeEv();closeMilestone();closeVenue();closePerfOverlay();}
 });
 
 // ── INIT ──────────────────────────────────────────────────────────────────
